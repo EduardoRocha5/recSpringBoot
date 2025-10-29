@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pedidos</title>
 </head>
 <body>
+    <div>
+        <h1>Pedidos</h1>
+        <h2>Criar Pedido</h2>
+        <form th:action="@{/adicionar}" th:object="${novoPedido}" method="post">
+            <input type="text" th:field="*{titulo}" placeholder="Nome Pedido" required/>
+            <input type="text" th:field="*{descricao}" placeholder="Observações"/>
+            <label for="text">Digite a Quantidade:<input type="text" th:field="*{quantidadePedidos}" placeholder="Digite a Quantidade"/></label>
+             <button type="submit">Adicionar</button>
+        </form>
+
+    
+    </div>
     
 </body>
 </html>
