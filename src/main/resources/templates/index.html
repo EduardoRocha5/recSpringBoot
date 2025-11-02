@@ -13,7 +13,7 @@
         <form th:action="@{/adicionar}" th:object="${novoPedido}" method="post">
             <input type="text" th:field="*{titulo}" placeholder="Nome Pedido" required/>
             <input type="text" th:field="*{descricao}" placeholder="Observações"/>
-            <label for="text">Digite a Quantidade:<input type="text" th:field="*{quantidadePedidos}" placeholder="Digite a Quantidade"/></label>
+            <label for="text">Digite a Quantidade: <input type="text" th:field="*{quantidadePedidos}" placeholder="Digite a Quantidade"/></label>
              <button type="submit">Adicionar</button>
         </form>
         <h2>Pedidos Cadastrados</h2>
@@ -46,10 +46,6 @@
                 </tr>
             </tbody>
         </table>
-
-
-    
     </div>
-    
 </body>
 </html>

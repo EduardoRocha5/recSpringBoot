@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Editar Pedido</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Pedido</h1>
+
+        <form th:action="@{/editar}" th:object="${pedido}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input id="titulo" type="text" th:field="*{titulo}" placeholder="Título" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input id="descricao" type="text" th:field="*{descricao}" placeholder="Descrição"/>
+            </div>
+
+            <div class="form-group">
+                <label for="quantidadePedidos">Quantidade:</label>
+                <input id="quantidadePedidos" type="text" th:field="*{quantidadePedidos}" placeholder="Quantidade"/>
+            </div>
+
+            <button type="submit">Salvar</button>
+            <a th:href="@{/pedidos}" class="button">Voltar</a>
+        </form>
+    </div>
+</body>
+</html>
