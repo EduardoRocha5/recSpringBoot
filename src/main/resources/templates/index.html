@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/style.css}">
     <title>Pedidos</title>
 </head>
 <body>
@@ -15,6 +16,36 @@
             <label for="text">Digite a Quantidade:<input type="text" th:field="*{quantidadePedidos}" placeholder="Digite a Quantidade"/></label>
              <button type="submit">Adicionar</button>
         </form>
+        <h2>Pedidos Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Pedido</th>
+                    <th>Observações</th>
+                    <th>Quantidades</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${paginaPedido.empty}">
+                <td colspan="6" style="text-align: center;"> Nenhum Pedido Cadastrado Ainda!</td>
+                </tr>
+                <tr th:each="pedido : ${paginaPedido.content}">
+                    <td th:text="${pedido.titulo}">Nome Pedido</td>
+                    <td th:text="${pedido.descricao}">Observações do Pedido</td>
+                    <td th:text="${pedido.quantidadePedidos}">Quantidades</td>
+                    <td th:text="${pedido.dataCriacao}">Data de Criação</td>
+                    <td th:text="${pedido.status} ? 'Concluído' : 'Pendente'"></td>
+                    <td><a th:href="@{/excluir/{id}(id=${pedido.id})}"onclick="return confirm('Tem certeza que deseja excluir?');" class="button">Excluir</a>
+                    <a th:href="@{/editar/{id}(id=${pedido.id})}" class="button">Editar</a></td>
+
+                </tr>
+            
+            
+            </tbody>
+        </table>
 
     
     </div>
