@@ -38,14 +38,15 @@
                     <td th:text="${pedido.quantidadePedidos}">Quantidades</td>
                     <td th:text="${pedido.dataCriacao}">Data de Criação</td>
                     <td th:text="${pedido.status} ? 'Concluído' : 'Pendente'"></td>
-                    <td><a th:href="@{/excluir/{id}(id=${pedido.id})}"onclick="return confirm('Tem certeza que deseja excluir?');" class="button">Excluir</a>
-                    <a th:href="@{/editar/{id}(id=${pedido.id})}" class="button">Editar</a></td>
-
+                    <td>
+                    <a th:href="@{/excluir/{id}(id=${pedido.id})}"onclick="return confirm('Tem certeza que deseja excluir?');" class="button">Excluir</a>
+                    <a th:href="@{/editar/{id}(id=${pedido.id})}" class="button">Editar</a>
+                    <a th:if="${!pedido.status}" th:href="@{/concluir/{id}(id=${pedido.id})}" class="button">Concluir</a>
+                </td>
                 </tr>
-            
-            
             </tbody>
         </table>
+
 
     
     </div>

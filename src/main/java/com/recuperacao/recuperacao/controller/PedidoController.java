@@ -1,5 +1,7 @@
 package com.recuperacao.recuperacao.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,8 +45,8 @@ public class PedidoController {
         return"redirect:pedidos";
 
     }
-     @GetMapping("/excluir/{id}")
-        public String excluir(@PathVariable Long id) {
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
 
         pedidoRepository.deleteById(id);
 
@@ -52,9 +54,21 @@ public class PedidoController {
 
     }
 
+    
+    @GetMapping("/concluir/{id}")
+    public String concluirPedido(@PathVariable Long id) {
 
+     Optional<Pedido> pedidoOpt = pedidoRepository.findById(id);
 
-
-
+     if (pedidoOpt.isPresent()) {
+        Pedido pedido = pedidoOpt.get();
+        pedido.setStatus(true);
+        pedidoRepository.save(pedido);
+    }
+    return "redirect:/pedidos";
+}    
 
 }
+ 
+
+
