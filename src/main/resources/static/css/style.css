@@ -1,0 +1,308 @@
+/* css/style.css
+   Centralizado no meio da tela
+   Compatível com Thymeleaf: <link rel="stylesheet" th:href="@{css/style.css}">
+*/
+
+/* ---------------------------
+   Variáveis de tema
+   --------------------------- */
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb; /* azul */
+  --accent-dark: #1e40af;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --glass: rgba(37,99,235,0.08);
+  --border: #e6e9ef;
+  --radius: 10px;
+  --font-sans: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------------------------
+   Reset e corpo centralizado
+   --------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--bg), #eef2f7 200px);
+  color: #0f172a;
+  display: flex;
+  align-items: center;     /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  font-size: 16px;
+}
+
+/* ---------------------------
+   Container principal
+   --------------------------- */
+.container {
+  width: 90%;
+  max-width: 980px;
+  background: var(--card);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(15,23,42,0.06);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------
+   Cabeçalhos
+   --------------------------- */
+.container h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+.container h2 {
+  margin: 18px 0 12px 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------------------------
+   Formulário
+   --------------------------- */
+form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form textarea,
+select {
+  flex: 1 1 220px;
+  min-width: 180px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: box-shadow .15s, border-color .15s;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+form input::placeholder { color: #9aa3b2; }
+
+form input:focus,
+form textarea:focus,
+select:focus {
+  box-shadow: 0 4px 14px var(--glass);
+  border-color: var(--accent);
+}
+
+/* Botões */
+form button[type="submit"],
+.button {
+  appearance: none;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s;
+}
+
+a.button {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  margin-right: 6px;
+}
+
+form button[type="submit"]:hover,
+a.button:hover {
+  transform: translateY(-2px);
+  opacity: .98;
+}
+
+/* Botão Excluir */
+a.button[onclick] {
+  background: none;
+  color: var(--danger);
+  border: 1px solid rgba(239,68,68,0.08);
+  box-shadow: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Botão Editar */
+a.button:not([onclick]) {
+  background: none;
+  color: var(--accent);
+  border: 1px solid rgba(37,99,235,0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ---------------------------
+   Tabela
+   --------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 700;
+  padding: 12px 10px;
+  color: #374151;
+  background: linear-gradient(180deg, rgba(15,23,42,0.02), transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f4f8;
+  vertical-align: middle;
+  color: #111827;
+}
+
+tbody tr:nth-child(even) {
+  background: #fbfbfd;
+}
+
+tbody td[colspan] {
+  padding: 20px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: white;
+}
+
+.status-concluida { background: var(--success); }
+.status-pendente { background: #f59e0b; }
+
+td.time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+td a { margin-right: 6px; }
+
+/* ---------------------------
+   Paginação
+   --------------------------- */
+.pagination {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------------------------
+   Responsividade
+   --------------------------- */
+@media (max-width: 860px) {
+  body {
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .container {
+    margin: 18px;
+    padding: 18px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  form button[type="submit"] {
+    width: 100%;
+  }
+
+  thead { display: none; }
+
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody tr {
+    margin-bottom: 12px;
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(12, 20, 40, 0.03);
+    border: 1px solid var(--border);
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: none;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-weight: 600;
+    margin-right: 10px;
+    flex: 0 0 45%;
+  }
+
+  td a { display: inline-block; margin-top: 6px; }
+}
+
+/* ---------------------------
+   Detalhes finais
+   --------------------------- */
+a.button:active, form button:active { transform: translateY(0); }
+
+.small {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+a:focus, button:focus, input:focus {
+  outline: 3px solid rgba(37,99,235,0.14);
+  outline-offset: 3px;
+}
