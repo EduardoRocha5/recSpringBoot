@@ -18,7 +18,7 @@ public class Pedido {
     private String descricao;
     private Boolean status;
     private LocalDate dataCriacao;
-    private int quantidadePedidos;
+    private String quantidadePedidos;
     private double valorPedido;
     private double resultado;
 
@@ -69,11 +69,11 @@ public void setDataCriacao(LocalDate dataCriacao) {
     this.dataCriacao = dataCriacao;
 }
 
-public int getQuantidadePedidos() {
+public String getQuantidadePedidos() {
     return quantidadePedidos;
 }
 
-public void setQuantidadePedidos(int quantidadePedidos) {
+public void setQuantidadePedidos(String quantidadePedidos) {
     this.quantidadePedidos = quantidadePedidos;
  }
 
