@@ -56,7 +56,7 @@ public class PedidoController {
 
     
     @GetMapping("/concluir/{id}")
-    public String concluirPedido(@PathVariable Long id) {
+        public String concluirPedido(@PathVariable Long id) {
 
      Optional<Pedido> pedidoOpt = pedidoRepository.findById(id);
 
@@ -67,6 +67,38 @@ public class PedidoController {
     }
     return "redirect:/pedidos";
 }    
+
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
+    Optional<Pedido> pedidoOpt = pedidoRepository.findById(id);
+    if (pedidoOpt.isPresent()) {
+        model.addAttribute("pedido", pedidoOpt.get());
+        return "editar"; // nome do template Thymeleaf (editar.hmtl)
+    }
+    return "redirect:/pedidos"; // se não encontrar, volta para a lista
+}
+
+
+    @PostMapping("/editar")
+    public String editarPedido(@ModelAttribute Pedido pedido) {
+
+    //altero os valores de cada campo e salvo no banco, na nova aba.
+    Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedido.getId());
+
+    if (pedidoOpt.isPresent()) {
+        Pedido pedidoExistente = pedidoOpt.get();
+        pedidoExistente.setTitulo(pedido.getTitulo());
+        pedidoExistente.setDescricao(pedido.getDescricao());
+        pedidoExistente.setStatus(pedido.getStatus());
+        pedidoExistente.setQuantidadePedidos(pedido.getQuantidadePedidos());
+        pedidoExistente.setValorPedido(pedido.getValorPedido());
+        pedidoExistente.setResultado(pedido.getResultado());
+
+        pedidoRepository.save(pedidoExistente);
+    }
+
+    return "redirect:/pedidos"; // volta para a lista de pedidos
+}
 
 }
  
